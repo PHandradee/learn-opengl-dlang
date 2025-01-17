@@ -1,0 +1,25 @@
+{
+	"authors": [
+		"sandbox"
+	],
+	"copyright": "Copyright © 2025, sandbox",
+	"description": "Learn OpenGL tutorial on D language",
+	"license": "MIT",
+	"name": "learn-opengl-dlang",
+	"targetPath": "bin",
+	"dependencies": {
+		"bindbc-glfw": "~>1.0.1",
+		"bindbc-opengl": "~>1.0.3"
+	},
+	"sourcePaths": [
+        "source"
+    ],
+	"importPaths": [
+		"libs"
+	],
+	"versions": [
+        "GLFW_33",
+        "GL_33",
+        "GL_AllowDeprecated"
+    ]
+}

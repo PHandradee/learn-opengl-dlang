@@ -1,0 +1,17 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/learn-opengl-dlang
+learn-opengl-dlang.so
+learn-opengl-dlang.dylib
+learn-opengl-dlang.dll
+learn-opengl-dlang.a
+learn-opengl-dlang.lib
+learn-opengl-dlang-test-*
+*.exe
+*.pdb
+*.o
+*.obj
+*.lst
+/bin
