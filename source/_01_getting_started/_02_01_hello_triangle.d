@@ -1,4 +1,4 @@
-module source._01_getting_started._02_hello_triangle;
+module source._01_getting_started._02_01_hello_triangle;
 
 import libloader;
 import bindbc.glfw;
