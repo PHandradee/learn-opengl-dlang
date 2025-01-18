@@ -41,7 +41,7 @@ void _main() {
         writefln("Failed to create GLFW window");
         return;
     }
-	scope(exit) {   glfwDestroyWindow(window); window = null; }
+    scope(exit) {   glfwDestroyWindow(window); window = null; }
 
     // Torna a janela o contexto atual
     glfwMakeContextCurrent(window);
@@ -64,14 +64,14 @@ void _main() {
     glViewport(0, 0, 800, 600);
     
     //Seta um funçãod e callback que será chamada quando o Framebuffer mudar o seu tamanho
-    glfwSetFramebufferSizeCallback(window, &framebuffer_size_callback);
+    glfwSetFramebufferSizeCallback(window, &framebufferSizeCallback);
 
     // Loop principal de renderização
     while (!glfwWindowShouldClose(window)) {
 
 
         //Processa input
-        process_inputs(window);
+        processInputs(window);
 
         // render
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -90,12 +90,12 @@ void* loadProc(const char* name) {
     return glfwGetProcAddress(name);
 }
 
-extern(C) void framebuffer_size_callback(GLFWwindow* window, int width, int height) nothrow
- {
+extern(C) void framebufferSizeCallback(GLFWwindow* window, int width, int height) nothrow
+{
     glViewport(0, 0, width, height);
- } 
+}
  
-void process_inputs(GLFWwindow* window) 
+void processInputs(GLFWwindow* window) 
 {
     if (glfwGetKey(window, GLFW_KEY_ESC) == GLFW_PRESS) 
     {
