@@ -2,8 +2,10 @@
 //import source._01_getting_started._02_01_hello_triangle;
 import source._01_getting_started._02_02_hello_triangle;
 import std.stdio : writefln;
+import libloader;
 
 
-void main() {
+void main()
+{
     _main();
 }

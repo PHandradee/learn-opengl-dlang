@@ -9,14 +9,12 @@
 	"targetPath": "bin",
 	"dependencies": {
 		"bindbc-glfw": "~>1.0.1",
-		"bindbc-opengl": "~>1.0.3"
+		"bindbc-opengl": "~>1.0.3",
+		"glad": {"path": "libs/"}
 	},
 	"sourcePaths": [
         "source"
     ],
-	"importPaths": [
-		"libs"
-	],
 	"versions": [
         "GLFW_33",
         "GL_33",
