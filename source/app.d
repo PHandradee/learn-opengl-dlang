@@ -4,7 +4,12 @@
 //import _01_getting_started._02_03_hello_triangle;
 
 //import _01_getting_started._02_04_hello_triangle;
-import _01_getting_started._02_05_hello_triangle;
+//import _01_getting_started._02_05_hello_triangle;
+
+//import _01_getting_started._03_01_shaders;
+
+import _01_getting_started._03_02_shaders ;
+
 
 import std.stdio : writefln;
 import libloader;
