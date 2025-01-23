@@ -8,7 +8,8 @@
 
 //import _01_getting_started._03_01_shaders;
 
-import _01_getting_started._03_02_shaders ;
+//import _01_getting_started._03_02_shaders ;
+import _01_getting_started._03_03_shaders ;
 
 
 import std.stdio : writefln;
