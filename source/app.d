@@ -7,16 +7,13 @@
 //import _01_getting_started._02_05_hello_triangle;
 
 //import _01_getting_started._03_01_shaders;
-
 //import _01_getting_started._03_02_shaders ;
 //import _01_getting_started._03_03_shaders ;
-import _01_getting_started._03_04_shaders ;
-
+//import _01_getting_started._03_04_shaders ;
+import _01_getting_started._03_05_shaders ;
 
 import std.stdio : writefln;
 import libloader;
-
-import utils.shader_program;
 
 
 void main()
