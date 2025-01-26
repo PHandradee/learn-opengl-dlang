@@ -18,7 +18,9 @@
 
 //import _01_getting_started._04_01_textures;
 
-import _01_getting_started._04_02_textures;
+//import _01_getting_started._04_02_textures;
+
+import _01_getting_started._04_03_textures;
 
 import std.stdio : writefln;
 import libloader;

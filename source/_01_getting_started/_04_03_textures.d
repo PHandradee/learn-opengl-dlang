@@ -1,4 +1,4 @@
-module _01_getting_started._04_02_textures;
+module _01_getting_started._04_03_textures;
 
 import libloader;
 import bindbc.glfw;
@@ -70,8 +70,8 @@ void _main()
     // build and compile our shader zprogram
     // ------------------------------------
     ShaderProgram shaderProgram = new ShaderProgram(
-        "shaders/_01_getting_started/_04_02_shaders/vertex_shader.vs",
-        "shaders/_01_getting_started/_04_02_shaders/fragment_shader.fs"
+        "shaders/_01_getting_started/_04_03_shaders/vertex_shader.vs",
+        "shaders/_01_getting_started/_04_03_shaders/fragment_shader.fs"
     );
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -120,8 +120,8 @@ void _main()
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * float.sizeof, cast(void*)(6 * float.sizeof));
     glEnableVertexAttribArray(2);
 
-    // load and create a texture 
-    // -------------------------
+    // texture 1
+    // ---------
     uint texture01;
     glGenTextures(1, &texture01);
     glBindTexture(GL_TEXTURE_2D, texture01); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
@@ -132,13 +132,13 @@ void _main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // load image, create texture and generate mipmaps
-    int width, height;
-    ubyte[] pixels;
-    GLenum format;
 
     try
     {
-        auto img = loadImage("resources/textures/container.jpeg"); 
+        int width, height;
+        ubyte[] pixels;
+        GLenum format;
+        auto img = loadImage("resources/textures/container.jpeg"); // Substitua pelo caminho correto
         width = img.width;
         height = img.height;
         pixels = img.data;
@@ -153,6 +153,49 @@ void _main()
         writeln("Failed to load image: ", e.msg);
         return;
     }
+
+        // texture 1
+    // ---------
+    uint texture02;
+    glGenTextures(1, &texture02);
+    glBindTexture(GL_TEXTURE_2D, texture02); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
+    // set the texture wrapping parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); // set texture wrapping to GL_REPEAT (default wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // set texture filtering parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    // load image, create texture and generate mipmaps
+    try
+    {
+        int width, height;
+        ubyte[] pixels;
+        GLenum format;
+        auto img = rotateImage(loadImage("resources/textures/awesome-face.png"),180); 
+        
+        width = img.width;
+        height = img.height;
+        pixels = img.data;
+        format = (img.channels == 4) ? GL_RGBA : GL_RGB; 
+        writeln("Image loaded successfully: ", width, "x", height);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, format, GL_UNSIGNED_BYTE, pixels
+                .ptr);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    catch (Exception e)
+    {
+        writeln("Failed to load image: ", e.msg);
+        return;
+    }
+
+    // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
+    // -------------------------------------------------------------------------------------------
+    shaderProgram.use(); // don't forget to activate/use the shader before setting uniforms!
+    // either set it manually like so:
+    glUniform1i(glGetUniformLocation(shaderProgram.getId(), "texture1"), 0);
+    // or set it via the texture class
+    shaderProgram.setInt("texture2", 1);
+
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
@@ -177,8 +220,11 @@ void _main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // bind Texture
+        // bind textures on corresponding texture units
+        glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture01);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, texture02);
 
         // render container
         shaderProgram.use();
