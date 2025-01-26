@@ -20,7 +20,9 @@
 
 //import _01_getting_started._04_02_textures;
 
-import _01_getting_started._04_03_textures;
+//import _01_getting_started._04_03_textures;
+
+import _01_getting_started._04_04_textures;
 
 import std.stdio : writefln;
 import libloader;
