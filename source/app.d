@@ -26,7 +26,9 @@
 
 //import _01_getting_started._04_05_textures;
 
-import _01_getting_started._04_06_textures;
+//import _01_getting_started._04_06_textures;
+
+import _01_getting_started._04_07_textures;
 
 
 import std.stdio : writefln;
